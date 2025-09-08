@@ -2,7 +2,7 @@ package com.back.global.rq
 
 import com.back.domain.member.member.entity.Member
 import com.back.domain.member.member.service.MemberService
-import com.back.global.app.AppConfig // 추가됨
+import com.back.global.app.AppConfig
 import com.back.global.security.SecurityUser
 import com.back.standard.extensions.getOrThrow
 import jakarta.servlet.http.Cookie
@@ -53,7 +53,7 @@ class Rq(
         val cookie = Cookie(name, value ?: "").apply {
             path = "/"
             isHttpOnly = true
-            domain = AppConfig.cookieDomain // 수정됨
+            domain = AppConfig.cookieDomain
             secure = true
             setAttribute("SameSite", "Strict")
             maxAge = if (value.isNullOrBlank()) 0 else 60 * 60 * 24 * 365

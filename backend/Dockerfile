@@ -12,7 +12,7 @@ COPY settings.gradle.kts .
 RUN gradle dependencies --no-daemon
 
 # 소스 코드 복사
-COPY .env.default .
+COPY .env .
 COPY src src
 
 # 애플리케이션 빌드
