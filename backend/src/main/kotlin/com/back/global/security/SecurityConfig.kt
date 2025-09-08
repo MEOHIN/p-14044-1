@@ -1,5 +1,6 @@
 package com.back.global.security
 
+import com.back.global.app.AppConfig
 import com.back.global.rsData.RsData
 import com.back.standard.util.Ut
 import org.springframework.context.annotation.Bean
@@ -35,7 +36,6 @@ class SecurityConfig(
                 authorize("/api/*/members/login", permitAll)
                 authorize("/api/*/members/logout", permitAll)
                 authorize(HttpMethod.POST, "/api/*/members", permitAll)
-                authorize(HttpMethod.GET, "/api/*/members/{id:\\d+}/redirectToProfileImg", permitAll)
                 authorize("/api/*/adm/**", hasRole("ADMIN"))
                 authorize("/api/*/**", authenticated)
                 authorize(anyRequest, permitAll)
@@ -93,7 +93,7 @@ class SecurityConfig(
     @Bean
     fun corsConfigurationSource(): UrlBasedCorsConfigurationSource {
         val configuration = CorsConfiguration().apply {
-            allowedOrigins = listOf("https://cdpn.io", "http://localhost:3000")
+            allowedOrigins = listOf("https://cdpn.io", AppConfig.siteFrontUrl) // 수정됨
             allowedMethods = listOf("GET", "POST", "PUT", "PATCH", "DELETE")
             allowCredentials = true
             allowedHeaders = listOf("*")
